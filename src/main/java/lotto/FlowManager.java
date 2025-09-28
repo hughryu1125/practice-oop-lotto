@@ -1,0 +1,40 @@
+package lotto;
+
+import java.util.List;
+
+public class FlowManager {
+    private final Input input = new Input();
+    private final Output output = new Output();
+    private final Validator validator = new Validator();
+    private final User user = new User();
+    private final Calculator calculator = new Calculator();
+    private final LottoController lottoController = new LottoController();
+
+
+    public void Start(){
+        // 금액 입력 -> 검증 -> 개수 계산 -> 로또 생성 -> 유저가 로또 리스트를 가짐.
+        output.printAskPrice();
+        int inputMoney = input.readInputMoney();
+        validator.validateAmountOfMoney(inputMoney);
+        int lottoCount = calculator.getLottoCountByMoney(inputMoney);
+        List<Lotto> lottoList = lottoController.createLottoList(lottoCount);
+        user.setLottoList(lottoList);
+
+        output.printAskNumbers();
+        List<Integer> winningNumbers = input.readLottoNumbers();
+        validator.validateNumbers(winningNumbers); // 당첨 넘버 받고, 검증.
+
+        output.printAskBonusNumber();
+        int bonusNumber = input.readBonusNumber();
+        validator.validateBonusNumber(bonusNumber,winningNumbers); // 보너스 넘버 받고, 검증.
+
+        output.printLotties(lottoList); //생성된 로또 리스트를 보여줌.
+
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        user.checkMatchingNumbers(winningLotto); // winningLotto와 체크하고 count를 센다.
+        output.printMatchingResult(user.getThreeNumberMatchingLottoCount(), user.getFourNumberMatchingLottoCount(), user.getFiveNumberMatchingLottoCount(), user.getWinningLottoCount());
+
+        double profitability = calculator.getProfitablity(inputMoney,user.getThreeNumberMatchingLottoCount(), user.getFourNumberMatchingLottoCount(), user.getFiveNumberMatchingLottoCount(), user.getWinningLottoCount());
+        output.printProfitability(profitability);
+    }
+}
