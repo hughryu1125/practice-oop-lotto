@@ -42,5 +42,6 @@ public class FlowManager {
 
         double profitability = calculator.getProfitablity(amountOfMoney,winnerCount, secondWinnerCount, thirdWinnerCount, fourthWinnerCount, fifthWinnerCount);
         output.printProfitability(profitability);
+
     }
 }
