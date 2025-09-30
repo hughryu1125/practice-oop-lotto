@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import domain.model.BunchOfLotties;
@@ -26,18 +25,16 @@ public class FlowManager {
         int bonusNumber = input.readBonusNumber();
 
         BunchOfLotties lotties = new BunchOfLotties(amountOfMoney);
-        User user = new User(lotties);
-
 
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
-        int winnerCount = user.getWinnerCount(winningLotto);
-        int secondWinnerCount = user.get2ndWinnerCount(winningLotto);
-        int thirdWinnerCount = user.get3rdWinnerCount(winningLotto);
-        int fourthWinnerCount = user.get4thWinnerCount(winningLotto);
-        int fifthWinnerCount = user.get5thWinnerCount(winningLotto);
+        int winnerCount = lotties.getWinnerCount(winningLotto);
+        int secondWinnerCount = lotties.get2ndWinnerCount(winningLotto);
+        int thirdWinnerCount = lotties.get3rdWinnerCount(winningLotto);
+        int fourthWinnerCount = lotties.get4thWinnerCount(winningLotto);
+        int fifthWinnerCount = lotties.get5thWinnerCount(winningLotto);
 
-        output.printLotties(user.getLotties().getLottoList());
+        output.printLotties(lotties.getLottoList());
         output.printMatchingResult(winnerCount, secondWinnerCount, thirdWinnerCount, fourthWinnerCount, fifthWinnerCount);
 
         double profitability = calculator.getProfitablity(amountOfMoney,winnerCount, secondWinnerCount, thirdWinnerCount, fourthWinnerCount, fifthWinnerCount);
