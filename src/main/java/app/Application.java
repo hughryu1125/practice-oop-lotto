@@ -1,4 +1,6 @@
-package lotto;
+package app;
+
+import controller.FlowManager;
 
 public class Application {
 
@@ -6,7 +8,7 @@ public class Application {
 
         FlowManager flowManager = new FlowManager();
         // TODO: 프로그램 구현
-        flowManager.Start();
+        flowManager.Run();
 
     }
 }

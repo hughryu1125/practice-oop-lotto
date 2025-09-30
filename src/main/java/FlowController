@@ -1,4 +1,13 @@
-package lotto;
+package controller;
+
+import domain.model.BunchOfLotties;
+import domain.service.Calculator;
+import domain.service.Validator;
+import domain.model.Lotto;
+import domain.model.User;
+import domain.model.WinningLotto;
+import view.Input;
+import view.Output;
 
 import java.util.List;
 
@@ -8,7 +17,7 @@ public class FlowManager {
     private final Validator validator = new Validator();
     private final User user = new User();
     private final Calculator calculator = new Calculator();
-    private final LottoController lottoController = new LottoController();
+    private final BunchOfLotties bunchOfLotties = new BunchOfLotties();
 
 
     public void Start(){
@@ -17,7 +26,7 @@ public class FlowManager {
         int inputMoney = input.readInputMoney();
         validator.validateAmountOfMoney(inputMoney);
         int lottoCount = calculator.getLottoCountByMoney(inputMoney);
-        List<Lotto> lottoList = lottoController.createLottoList(lottoCount);
+        List<Lotto> lottoList = bunchOfLotties.createLottoList(lottoCount);
         user.setLottoList(lottoList);
 
         output.printAskNumbers();

@@ -1,7 +1,9 @@
-package lotto;
+package view;
 
 
 ///  else 쓰지 말기 / enum 쓰기 / bonus ball원리
+
+import domain.model.Lotto;
 
 import java.util.List;
 
@@ -37,11 +39,12 @@ public class Output {
         }
     }
 
-    public void printMatchingResult(int matchingThree, int matchingFour, int matchingFive, int winning){
-        System.out.println("3개 일치 (5,000원) -- " + matchingThree + "개");
-        System.out.println("4개 일치 (50,000원) -- " + matchingFour + "개");
-        System.out.println("5개 일치 (1,500,000원) -- " + matchingFive + "개");
-        System.out.println("6개 일치 (2,000,000,000원) -- " + winning + "개");
+    public void printMatchingResult(int winningCount, int secWinningCount, int thirdWinningCount, int fourthWinningCount, int fifthWinnerCount){
+        System.out.println("3개 일치 (5,000원) -- " + fifthWinnerCount + "개");
+        System.out.println("4개 일치 (50,000원) -- " + fourthWinningCount + "개");
+        System.out.println("5개 일치 (1,500,000원) -- " + thirdWinningCount + "개");
+        System.out.println("5개 일치 + 보너스 숫자 일치 (30,000,000d원)" + secWinningCount + "개");
+        System.out.println("6개 일치 (2,000,000,000원) -- " + winningCount + "개");
     }
 
     public void printProfitability(double profitability){

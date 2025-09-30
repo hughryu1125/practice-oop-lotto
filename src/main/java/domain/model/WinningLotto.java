@@ -1,5 +1,6 @@
-package lotto;
+package domain.model;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -10,17 +11,17 @@ public class WinningLotto {
 
     public WinningLotto(List<Integer> winningNumbers, int bonusNumber) {
         this.winningNumbers = winningNumbers;
+        Collections.sort(winningNumbers);
         this.bonusNumber = bonusNumber;
     }
 
-    public List<Integer> getTotalNumbers() {
-        List<Integer> totalNumbers = new ArrayList<>();
-        for(Integer winningNumber : winningNumbers){
-            totalNumbers.add(winningNumber);
-        }
-        totalNumbers.add(bonusNumber);
+    public List<Integer> getNumbers() {
 
-        return totalNumbers;
+        return winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 
 

@@ -1,0 +1,16 @@
+    public void checkMatchingNumbers(WinningLotto winningLotto) {
+        List<Integer> totalList = winningLotto.getTotalNumbers();
+        for(Lotto lotto : lottoList){
+            if (lotto.getSameNumberCount(totalList) == 3){
+                threeNumberMatchingLottoCount++;
+            }
+            else if (lotto.getSameNumberCount(totalList) == 4){
+                fourNumberMatchingLottoCount++;
+            } else if (lotto.getSameNumberCount(totalList) == 5) {
+                fiveNumberMatchingLottoCount++;
+            }
+            else if (lotto.getSameNumberCount(totalList) == 6) {
+                winningLottoCount++;
+            }
+        }
+    }

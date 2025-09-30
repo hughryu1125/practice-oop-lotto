@@ -16,7 +16,7 @@
 
 -> validation check: 1000원 단위?[validator]
 
-* 로또 Winning 번호 입력 받기 + 보너스 넘버도.[Input]
+* 로또 Winning 번호 입력 받기 + 보너스 넘버도.[Input] 
 
 -> Check validation: 개수/중복/범위 [validator]
 -> 입력한 값들 오름차순으로 정렬 []
