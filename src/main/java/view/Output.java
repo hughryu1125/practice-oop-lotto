@@ -47,7 +47,7 @@ public class Output {
         System.out.println("6개 일치 (2,000,000,000원) -- " + winningCount + "개");
     }
 
-    public void printProfitability(double profitability){
+    public void printProfitMargin(double profitability){
         System.out.println("총 수익률은 " + profitability + "% 입니다.");
     }
 

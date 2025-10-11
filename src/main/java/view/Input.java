@@ -15,7 +15,7 @@ public class Input {
         return money;
     }
 
-    public List<Integer> readLottoNumbers(){
+    public List<Integer> readNumbers(){
         String rawInput = Console.readLine().trim();
         String[] inputs = rawInput.split(", ");
 
