@@ -8,8 +8,11 @@ import domain.service.ErrorMessage;
 
 public class Validator {
 
+    private static final int MINIMUM_ALLOWED_MOENY = 0;
+    private static final int MONEY_UNIT = 1000;
+
     public void validateAmountOfMoney(int money){
-        if(money % 1000 != 0 || money < 0) throw new IllegalArgumentException(ErrorMessage.MONEY_RANGE);
+        if(money % MONEY_UNIT != 0 || money < MINIMUM_ALLOWED_MOENY) throw new IllegalArgumentException(ErrorMessage.MONEY_RANGE);
     }
 
     public void validateNumbers(List<Integer> numbers) { // 파라미터의 list가 적절한지 check

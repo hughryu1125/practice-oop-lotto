@@ -24,7 +24,7 @@ public class Input {
             inputNumbers.add(Integer.parseInt(input.trim()));
         }
 
-        return inputNumbers; // validation하지 않은 raw값을 보냄.
+        return inputNumbers;
     }
 
     public int readBonusNumber(){

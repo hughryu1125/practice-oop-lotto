@@ -1,5 +1,6 @@
 package domain.model;
 import domain.service.LOTTOINFO;
+import domain.service.WINNERCOUNT;
 import util.RandomNumberCreator;
 
 import java.util.ArrayList;
@@ -27,61 +28,39 @@ public class BunchOfLotties {
         return lottoList;
     }
 
-    public int getWinnerCount(WinningLotto winningLotto) {
-        List<Integer> winningNumbers = winningLotto.getNumbers();
-        int count = 0;
-        for(int i = 0; i < lottoList.size(); i++){
-            if (lottoList.get(i).getSameNumberCount(winningNumbers) == LOTTOINFO.MAX_LOTTO_COUNT) count++;//
-        }
+    public List<Integer> getWinningLottiesCounts(WinningLotto winningLotto) {
 
-        return count;
-    }
+        List<Integer> winningLottiesCounts = new ArrayList<>();
+        List<Integer> winningLottoNumbers = winningLotto.getNumbers();
 
-    public int get2ndWinnerCount(WinningLotto winningLotto) {
-        List<Integer> winningNumbers = winningLotto.getNumbers();
-        int count = 0;
+        int[] winnerCount = new int[WINNERCOUNT.MAXWINNER];
+
         for(int i = 0; i < lottoList.size(); i++){
-            if(lottoList.get(i).getSameNumberCount(winningNumbers) == LOTTOINFO.MAX_LOTTO_COUNT -1
-                    && lottoList.get(i).hasBonusNumber(winningLotto.getBonusNumber())){
-                count++;
+            if(lottoList.get(i).getSameNumberCount(winningLottoNumbers) == LOTTOINFO.MAX_LOTTO_COUNT)
+            {
+                winnerCount[WINNERCOUNT.WINNER]++;
+            }
+            else if (lottoList.get(i).getSameNumberCount(winningLottoNumbers) == LOTTOINFO.MAX_LOTTO_COUNT -1){
+                winnerCount[WINNERCOUNT.SECONDWINNER]++;
+            }
+            else if (lottoList.get(i).getSameNumberCount(winningLottoNumbers) == LOTTOINFO.MAX_LOTTO_COUNT -2){
+                winnerCount[WINNERCOUNT.THIRDWINNER]++;
+            }
+            else if (lottoList.get(i).getSameNumberCount(winningLottoNumbers) == LOTTOINFO.MAX_LOTTO_COUNT -3){
+                winnerCount[WINNERCOUNT.FOURTHWINNER]++;
+            }
+            else if (lottoList.get(i).getSameNumberCount(winningLottoNumbers) == LOTTOINFO.MAX_LOTTO_COUNT -4){
+                winnerCount[WINNERCOUNT.FIFTHWINNER]++;
             }
         }
 
-        return count;
-    }
-
-    public int get3rdWinnerCount(WinningLotto winningLotto) {
-        List<Integer> winningNumbers = winningLotto.getNumbers();
-        int count = 0;
-        for(int i = 0; i < lottoList.size(); i++){
-            if (lottoList.get(i).getSameNumberCount(winningNumbers) == LOTTOINFO.MAX_LOTTO_COUNT-1
-                    && !lottoList.get(i).hasBonusNumber(winningLotto.getBonusNumber())){
-                count++;
-            }
+        for(int i =0; i < WINNERCOUNT.MAXWINNER; i++){
+            winningLottiesCounts.add(winnerCount[i]);
         }
 
-        return count;
+        return winningLottiesCounts;
     }
 
-    public int get4thWinnerCount(WinningLotto winningLotto) {
-        List<Integer> winningNumbers = winningLotto.getNumbers();
-        int count = 0;
-        for(int i = 0; i < lottoList.size(); i++){
-            if (lottoList.get(i).getSameNumberCount(winningNumbers) == LOTTOINFO.MAX_LOTTO_COUNT -2) count++;//
-        }
-
-        return count;
-    }
-
-    public int get5thWinnerCount(WinningLotto winningLotto) {
-        List<Integer> winningNumbers = winningLotto.getNumbers();
-        int count = 0;
-        for(int i = 0; i < lottoList.size(); i++){
-            if (lottoList.get(i).getSameNumberCount(winningNumbers) == LOTTOINFO.MAX_LOTTO_COUNT-3) count++;//
-        }
-
-        return count;
-    }
 
 
 }

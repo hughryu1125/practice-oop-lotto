@@ -10,10 +10,10 @@ import domain.service.*;
 import domain.model.*;
 
 public class FlowManager {
-    Input input = new Input();
-    Output output = new Output();
-    Validator validator = new Validator();
-    Calculator calculator = new Calculator();
+    private Input input = new Input();
+    private Output output = new Output();
+    private Validator validator = new Validator();
+    private Calculator calculator = new Calculator();
 
     public void Run() {
 
@@ -21,7 +21,7 @@ public class FlowManager {
         int amountOfMoney = input.readInputMoney(); // 입력받고
         validator.validateAmountOfMoney(amountOfMoney); // validation check
 
-        output.printAskNumbers();
+        output.printAskWinningNumbers();
         List<Integer> winningNumbers = input.readNumbers();
         validator.validateNumbers(winningNumbers);
 
@@ -35,17 +35,13 @@ public class FlowManager {
 
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber); // 당첨 로또도 생성함.
 
-        int winnerCount = lotties.getWinnerCount(winningLotto);
-        int secondWinnerCount = lotties.get2ndWinnerCount(winningLotto);
-        int thirdWinnerCount = lotties.get3rdWinnerCount(winningLotto);
-        int fourthWinnerCount = lotties.get4thWinnerCount(winningLotto);
-        int fifthWinnerCount = lotties.get5thWinnerCount(winningLotto);
 
         output.printLotties(lotties.getLottoList()); // 생성한 사용자의 로또들을 print.
+        List<Integer> winnerCounts = lotties.getWinningLottiesCounts(winningLotto);
 
-        output.printMatchingResult(winnerCount, secondWinnerCount, thirdWinnerCount, fourthWinnerCount, fifthWinnerCount);
+        output.printMatchingResult(winnerCounts);
 
-        double profitMargin = calculator.getProfitMargin(10000,winnerCount, secondWinnerCount, thirdWinnerCount, fourthWinnerCount, fifthWinnerCount);
+        double profitMargin = calculator.getProfitMargin(amountOfMoney,winnerCounts);
         output.printProfitMargin(profitMargin);
 
     }

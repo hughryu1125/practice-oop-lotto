@@ -4,6 +4,7 @@ package view;
 ///  else 쓰지 말기 / enum 쓰기 / bonus ball원리
 
 import domain.model.Lotto;
+import domain.service.WINNERCOUNT;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class Output {
         System.out.println("구입하실 금액을 입력하세요: ");
     }
 
-    public void printAskNumbers(){
+    public void printAskWinningNumbers(){
         System.out.println("당첨번호를 입력하세요: ");
     }
 
@@ -39,12 +40,12 @@ public class Output {
         }
     }
 
-    public void printMatchingResult(int winningCount, int secWinningCount, int thirdWinningCount, int fourthWinningCount, int fifthWinnerCount){
-        System.out.println("3개 일치 (5,000원) -- " + fifthWinnerCount + "개");
-        System.out.println("4개 일치 (50,000원) -- " + fourthWinningCount + "개");
-        System.out.println("5개 일치 (1,500,000원) -- " + thirdWinningCount + "개");
-        System.out.println("5개 일치 + 보너스 숫자 일치 (30,000,000d원)" + secWinningCount + "개");
-        System.out.println("6개 일치 (2,000,000,000원) -- " + winningCount + "개");
+    public void printMatchingResult(List<Integer> winnerCounts){
+        System.out.println("3개 일치 (5,000원) -- " + winnerCounts.get(WINNERCOUNT.WINNER) + "개");
+        System.out.println("4개 일치 (50,000원) -- " + winnerCounts.get(WINNERCOUNT.SECONDWINNER) + "개");
+        System.out.println("5개 일치 (1,500,000원) -- " + winnerCounts.get(WINNERCOUNT.THIRDWINNER) + "개");
+        System.out.println("5개 일치 + 보너스 숫자 일치 (30,000,000d원)" + winnerCounts.get(WINNERCOUNT.FOURTHWINNER) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) -- " + winnerCounts.get(WINNERCOUNT.FIFTHWINNER) + "개");
     }
 
     public void printProfitMargin(double profitability){
